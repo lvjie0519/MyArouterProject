@@ -1,0 +1,17 @@
+ext{
+    android = [
+            compileSdkVersion: 30,
+            buildToolsVersion: "29.0.3",
+            minSdkVersion: 18,
+            targetSdkVersion: 30,
+            versionCode: 1,
+            versionName: "1.0"
+    ]
+    dependencies = [
+            appcompatVersion:"1.2.0",
+            constraintlayoutVersion:"2.0.0",
+            junitVerison:"4.12",
+            extJunitVersion:"1.1.1",
+            espressoCoreVersion:"3.2.0"
+    ]
+}

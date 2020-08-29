@@ -1,14 +1,18 @@
 apply plugin: 'com.android.application'
 
+def androidConfig = rootProject.ext.android
+def dependenciesConfig = rootProject.ext.dependencies
+
 android {
-    compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    compileSdkVersion androidConfig.compileSdkVersion
+    buildToolsVersion androidConfig.buildToolsVersion
     defaultConfig {
         applicationId "com.example.myarouterproject"
-        minSdkVersion 18
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+        versionCode androidConfig.versionCode
+        versionName androidConfig.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,11 +25,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation "androidx.appcompat:appcompat:${dependenciesConfig.appcompatVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${dependenciesConfig.constraintlayoutVersion}"
+
+    testImplementation "junit:junit:${dependenciesConfig.junitVerison}"
+
+    androidTestImplementation "androidx.test.ext:junit:${dependenciesConfig.extJunitVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${dependenciesConfig.espressoCoreVersion}"
+
     implementation project(path: ':study')
     implementation project(path: ':login')
 }
