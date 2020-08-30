@@ -36,4 +36,7 @@ dependencies {
 
     implementation project(path: ':study')
     implementation project(path: ':login')
+    implementation project(path: ':router')
+    annotationProcessor project(path: ':router-processor')
+    implementation project(path: ':router-annotations')
 }
