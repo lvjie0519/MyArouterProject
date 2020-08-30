@@ -2,7 +2,16 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation project(path: ':router-annotations')
+
+    // gradle 3.4.+  必须依赖
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+
+    //  帮助生成代码，选用
+    implementation"com.squareup:javapoet:1.9.0"
+
 }
 
 sourceCompatibility = "7"

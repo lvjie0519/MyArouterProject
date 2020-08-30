@@ -1,5 +1,7 @@
 package com.example.router;
 
+import com.google.auto.service.AutoService;
+
 import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -20,6 +23,7 @@ import javax.tools.JavaFileObject;
 /**
  * 每一个注解处理器类都必须有一个空的构造函数，默认不写就行;
  */
+@AutoService(Processor.class)       // 注册注解处理器, 必须要注册，注解处理器在编译时才会执行
 public class MyRouterProcessor extends AbstractProcessor {
 
     // 获取到一个生成文件的对象
@@ -85,8 +89,7 @@ public class MyRouterProcessor extends AbstractProcessor {
             try {
                 // 每个模块当都依赖该处理器， 都会执行一次
                 String className = "RouterUtil"+System.currentTimeMillis();
-                System.out.println("lvjie   "+className);
-                JavaFileObject sourceFile = mFiler.createSourceFile("com.example.router.util.RouterUtil"+className);
+                JavaFileObject sourceFile = mFiler.createSourceFile("com.example.router.util."+className);
 
                 writer = sourceFile.openWriter();
                 StringBuilder stringBuilder = new StringBuilder();
@@ -101,8 +104,8 @@ public class MyRouterProcessor extends AbstractProcessor {
                 Iterator<Map.Entry<String,String>> iterator = mapActivity.entrySet().iterator();
                 while (iterator.hasNext()){
                     Map.Entry<String,String> entry = iterator.next();
-                    stringBuilder.append("MyRouter.getInstance().addActivity("+entry.getKey()+", "+entry.getValue()+");");
-                    stringBuilder.append("\n");
+                    stringBuilder.append("MyRouter.getInstance().addActivity(\""+entry.getKey()+"\", "+entry.getValue()+".class);");
+                    stringBuilder.append("}\n");
                 }
 
                 stringBuilder.append("}");
