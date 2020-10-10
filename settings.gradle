@@ -1,2 +1,2 @@
-include ':app', ':login', ':study', ':router', ':router-processor', ':router-annotations'
+include ':app', ':login', ':study', ':router', ':router-processor', ':router-annotations', ':component-manager'
 rootProject.name='MyArouterProject'

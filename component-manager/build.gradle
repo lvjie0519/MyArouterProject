@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 def androidConfig = rootProject.ext.android
 def dependenciesConfig = rootProject.ext.dependencies
@@ -6,38 +6,36 @@ def dependenciesConfig = rootProject.ext.dependencies
 android {
     compileSdkVersion androidConfig.compileSdkVersion
     buildToolsVersion androidConfig.buildToolsVersion
+
+
     defaultConfig {
-        applicationId "com.example.myarouterproject"
         minSdkVersion androidConfig.minSdkVersion
         targetSdkVersion androidConfig.targetSdkVersion
         versionCode androidConfig.versionCode
         versionName androidConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "androidx.appcompat:appcompat:${dependenciesConfig.appcompatVersion}"
-    implementation "androidx.constraintlayout:constraintlayout:${dependenciesConfig.constraintlayoutVersion}"
-
     testImplementation "junit:junit:${dependenciesConfig.junitVerison}"
-
     androidTestImplementation "androidx.test.ext:junit:${dependenciesConfig.extJunitVersion}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${dependenciesConfig.espressoCoreVersion}"
 
-    implementation project(path: ':study')
-    implementation project(path: ':login')
     implementation project(path: ':router')
     annotationProcessor project(path: ':router-processor')
     implementation project(path: ':router-annotations')
-    implementation project(path: ':component-manager')
 }

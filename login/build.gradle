@@ -40,4 +40,5 @@ dependencies {
     implementation project(path: ':router')
     annotationProcessor project(path: ':router-processor')
     implementation project(path: ':router-annotations')
+    implementation project(path: ':component-manager')
 }
