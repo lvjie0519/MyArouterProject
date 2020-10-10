@@ -33,7 +33,7 @@ public class ComponentManager {
      * 收集注册模块，并分别执行onCreate方法
      */
     public void componentOnCreate() {
-        mComponents = new ArrayList<>(getModuleAwares());
+        mComponents = new ArrayList<>(getComponents());
         for (IComponentLifecycle component : mComponents) {
             try {
                 component.onCreate();
@@ -43,7 +43,7 @@ public class ComponentManager {
         }
     }
 
-    private List<IComponentLifecycle> getModuleAwares() {
+    private List<IComponentLifecycle> getComponents() {
         List<IComponentLifecycle> tempComponents = new ArrayList<>();
         ServiceLoader<IComponentLifecycle> loader = ServiceLoader.load(IComponentLifecycle.class);
         Iterator<IComponentLifecycle> iterator = loader.iterator();
