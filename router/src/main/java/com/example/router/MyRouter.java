@@ -26,10 +26,14 @@ public class MyRouter{
     public void init(Context context){
         mContext = context.getApplicationContext();
 
+        /**
+         * 返回该包名下的说有类名
+         */
         List<String> listClass = getClassName("com.example.router.util");
         for (String className:listClass) {
             try {
                 Class<?> aClass = Class.forName(className);
+                // className 是否为 IMyRouter类型
                 if(IMyRouter.class.isAssignableFrom(aClass)){
                     IMyRouter iMyRouter = (IMyRouter) aClass.newInstance();
                     iMyRouter.addActivity();
