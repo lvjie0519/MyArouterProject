@@ -2,6 +2,7 @@ package com.example.myarouterproject;
 
 import android.app.Application;
 
+import com.example.component.manager.ComponentManager;
 import com.example.router.MyRouter;
 
 public class MyApplication extends Application {
@@ -10,5 +11,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         MyRouter.getInstance().init(getApplicationContext());
+
+        ComponentManager.getInstance().componentOnCreate();
     }
 }

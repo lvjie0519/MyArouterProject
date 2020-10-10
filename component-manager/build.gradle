@@ -34,8 +34,4 @@ dependencies {
     testImplementation "junit:junit:${dependenciesConfig.junitVerison}"
     androidTestImplementation "androidx.test.ext:junit:${dependenciesConfig.extJunitVersion}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${dependenciesConfig.espressoCoreVersion}"
-
-    implementation project(path: ':router')
-    annotationProcessor project(path: ':router-processor')
-    implementation project(path: ':router-annotations')
 }

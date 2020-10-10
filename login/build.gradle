@@ -41,4 +41,8 @@ dependencies {
     annotationProcessor project(path: ':router-processor')
     implementation project(path: ':router-annotations')
     implementation project(path: ':component-manager')
+    implementation project(path: ':login-external')
+
+    implementation "com.google.auto.service:auto-service:${dependenciesConfig.googleAutoService}"
+    annotationProcessor "com.google.auto.service:auto-service:${dependenciesConfig.googleAutoService}"
 }
